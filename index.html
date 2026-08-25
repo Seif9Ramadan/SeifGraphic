@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seif Ramadan — Graphic Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF9F5;
+    --paper-dim:#F1EFE8;
+    --ink:#15151A;
+    --muted:#68686F;
+    --line:#DEDBD0;
+    --accent:#4B2FE8;
+    --accent-soft:#EDE9FE;
+    --warm:#FF5A3C;
+    --check-a:#EDEDED;
+    --check-b:#FAFAFA;
+    --radius:2px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--accent); color:#fff;}
+
+  .display{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:-0.01em;
+    line-height:0.86;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  @media (max-width:640px){ .wrap{padding:0 20px;} }
+
+  /* NAV */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,249,245,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0;
+  }
+  .nav-mark{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    font-size:20px;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+    text-decoration:none;
+  }
+  .nav-links{
+    display:flex; gap:28px; align-items:center;
+    font-size:13px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  .nav-links a{ text-decoration:none; color:var(--muted); transition:color .15s; }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--ink); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--ink); color:var(--paper);
+    padding:11px 20px;
+    text-decoration:none;
+    font-size:13px; font-weight:500;
+    letter-spacing:0.03em;
+    border:1px solid var(--ink);
+    border-radius:var(--radius);
+    transition:background .15s, color .15s, transform .15s;
+  }
+  .btn:hover, .btn:focus-visible{ background:var(--accent); border-color:var(--accent); transform:translateY(-1px); }
+  .btn-outline{
+    background:transparent; color:var(--ink);
+  }
+  .btn-outline:hover, .btn-outline:focus-visible{ background:var(--ink); color:var(--paper); }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:96px 0 72px;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:44px 44px;
+    background-position:center -1px;
+    -webkit-mask-image:linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image:linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+  .hero-content{
+    -webkit-mask-image:none; mask-image:none;
+  }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+    border:1px solid var(--line);
+    background:var(--paper);
+    padding:6px 12px;
+    border-radius:20px;
+    margin-bottom:28px;
+  }
+  .hero-eyebrow .dot{
+    width:7px; height:7px; border-radius:50%; background:var(--warm);
+    box-shadow:0 0 0 3px rgba(255,90,60,0.15);
+  }
+  .hero h1{
+    font-size:clamp(56px, 11vw, 130px);
+    margin:0;
+  }
+  .hero h1 span{ display:block; }
+  .hero h1 .accent-word{ color:var(--accent); }
+  .hero-sub{
+    max-width:520px;
+    font-size:18px;
+    line-height:1.55;
+    color:var(--muted);
+    margin:28px 0 36px;
+  }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+  .hero-tagbar{
+    margin-top:56px;
+    display:flex; gap:0;
+    border-top:1px solid var(--line);
+    padding-top:18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+    flex-wrap:wrap;
+    gap:24px;
+  }
+  .hero-tagbar b{ color:var(--ink); font-weight:500; }
+
+  /* SECTION HEADS */
+  .section{ padding:88px 0; border-top:1px solid var(--line); }
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    gap:24px; margin-bottom:48px; flex-wrap:wrap;
+  }
+  .section-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:0 0 10px;
+  }
+  .section-title{
+    font-size:clamp(34px, 5vw, 54px);
+    margin:0;
+  }
+  .section-desc{ color:var(--muted); font-size:15px; max-width:340px; margin:0; }
+
+  /* ABOUT */
+  .about-grid{
+    display:grid; grid-template-columns:1.3fr 1fr; gap:64px;
+    align-items:start;
+  }
+  @media (max-width:800px){ .about-grid{ grid-template-columns:1fr; gap:40px; } }
+  .about-text p{
+    font-size:19px; line-height:1.65; color:var(--ink);
+    margin:0 0 20px;
+  }
+  .about-text p:last-child{ margin-bottom:0; color:var(--muted); font-size:16px; }
+  .tool-list{ list-style:none; margin:0; padding:0; }
+  .tool-list li{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+  }
+  .tool-list li:first-child{ border-top:1px solid var(--line); }
+  .tool-list .n{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted); }
+
+  /* WORK */
+  .category-block{ margin-bottom:64px; }
+  .category-block:last-child{ margin-bottom:0; }
+  .category-title{
+    display:flex; align-items:baseline; gap:12px;
+    margin:0 0 24px;
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:800;
+    text-transform:uppercase;
+    font-size:26px;
+  }
+  .category-title .count{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:400; font-size:12px; color:var(--muted);
+    text-transform:none;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:28px;
+  }
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    display:flex; flex-direction:column;
+    transition:border-color .15s, transform .15s;
+  }
+  .card:hover{ border-color:var(--ink); }
+  .card-frame{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    background:var(--paper-dim);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .card-frame img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .card-frame.checker{
+    background-image:
+      linear-gradient(45deg, var(--check-a) 25%, transparent 25%),
+      linear-gradient(-45deg, var(--check-a) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, var(--check-a) 75%),
+      linear-gradient(-45deg, transparent 75%, var(--check-a) 75%);
+    background-size:20px 20px;
+    background-position:0 0, 0 10px, 10px -10px, -10px 0px;
+    background-color:var(--check-b);
+  }
+  .card-frame.checker img{ object-fit:contain; padding:32px; }
+  .ratio-square .card-frame{ aspect-ratio:1/1; }
+  .ratio-wide .card-frame{ aspect-ratio:16/9; }
+  .ratio-tall .card-frame{ aspect-ratio:3/4; }
+
+  .layer-row{
+    display:flex; align-items:center; gap:10px;
+    padding:11px 14px;
+    border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--muted);
+    background:var(--paper-dim);
+  }
+  .layer-row .eye{ opacity:.55; font-size:12px; flex:0 0 auto; }
+  .layer-row .fname{ color:var(--ink); flex:1 1 auto; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .layer-row .blend{ flex:0 0 auto; color:var(--muted); }
+  .card-body{ padding:16px 14px 18px; }
+  .card-tag{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--accent);
+    background:var(--accent-soft);
+    padding:3px 8px;
+    border-radius:20px;
+    margin-bottom:10px;
+  }
+  .card-body h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    margin:0 0 6px;
+  }
+  .card-body p{ margin:0; font-size:13.5px; color:var(--muted); line-height:1.5; }
+
+  /* SERVICES */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  @media (max-width:800px){ .services-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .services-grid{ grid-template-columns:1fr; } }
+  .service{
+    background:var(--paper);
+    padding:32px 26px;
+  }
+  .service .idx{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--accent); display:block; margin-bottom:20px;
+  }
+  .service h3{
+    font-family:'Big Shoulders Display', sans-serif;
+    text-transform:uppercase; font-weight:800; font-size:22px;
+    margin:0 0 10px;
+  }
+  .service p{ margin:0; color:var(--muted); font-size:14px; line-height:1.55; }
+
+  /* CONTACT */
+  .contact{
+    text-align:center;
+    padding:110px 0 90px;
+  }
+  .contact h2{
+    font-size:clamp(40px, 9vw, 96px);
+    margin:0 0 28px;
+  }
+  .contact-email{
+    font-size:20px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .contact .btn{ margin-top:34px; font-size:15px; padding:16px 30px; }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:26px 0;
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--muted);
+    flex-wrap:wrap; gap:10px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a class="nav-mark" href="#top">Seif Ramadan</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a class="btn" href="mailto:seif9ramadan@gmail.com">Let's talk</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-content">
+    <div class="hero-eyebrow"><span class="dot"></span>Available for freelance projects</div>
+    <h1 class="display">
+      <span>Seif</span>
+      <span class="accent-word">Ramadan</span>
+    </h1>
+    <p class="hero-sub">Self-taught graphic designer. Photoshop obsessive. I build brand identities, posters, thumbnails and social content that look like a client actually paid for them.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#work">View my work</a>
+      <a class="btn btn-outline" href="mailto:seif9ramadan@gmail.com">seif9ramadan@gmail.com</a>
+    </div>
+    <div class="hero-tagbar">
+      <div><b>8</b> projects</div>
+      <div><b>3</b> disciplines — branding, print, thumbnails</div>
+      <div>Tools: <b>Photoshop · Photopea · HTML/CSS</b></div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="about">
+  <div class="wrap about-grid">
+    <div class="about-text">
+      <p>I'm a self-taught graphic designer who's passionate about design and Photoshop — no design degree, just a lot of hours in the software, a lot of reference-hunting, and a habit of compa[...]</p>
+      <p>My focus is commercial work — the kind of design businesses actually pay for: brand identities, event and product posters, YouTube thumbnails, and social media graphics. I also work wi[...]</p>
+    </div>
+    <ul class="tool-list">
+      <li><span>Photoshop / Photopea</span><span class="n">CORE</span></li>
+      <li><span>Branding &amp; identity</span><span class="n">01</span></li>
+      <li><span>Poster &amp; print design</span><span class="n">02</span></li>
+      <li><span>YouTube thumbnails</span><span class="n">03</span></li>
+      <li><span>Social media graphics</span><span class="n">04</span></li>
+      <li><span>HTML &amp; CSS</span><span class="n">05</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="section-label">// Selected work</p>
+        <h2 class="section-title">Recent projects</h2>
+      </div>
+      <p class="section-desc">A mix of self-initiated concepts and simulated client briefs — organized the way I'd hand off files: by layer.</p>
+    </div>
+
+    <div class="category-block">
+      <h3 class="category-title">Branding &amp; Identity <span class="count">// 2 files</span></h3>
+      <div class="grid">
+
+        <div class="card ratio-square">
+          <div class="card-frame checker">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA9QAAAPUCAIAAADDtubTAAAAAXNSR0IB2cksfwAAAAlwSFlzAAALEwAACxMBAJqcGAABGmRJREFUeJzs3Qd4W+d9L/6DvUEQgwDBvUUty5Y1LMnytuMVr8Rx0zhx0pX[...]" alt="project image">
+          </div>
+          <div class="layer-row"><span class="eye">&#128065;</span><span class="fname">voltedge-solutions_logo.png</span><span class="blend">Normal · 100%</span></div>
+          <div class="card-body">
+            <span class="card-tag">Branding</span>
+            <h3>VoltEdge Solutions</h3>
+            <p>Full identity concept for an electrical services brand — logomark, wordmark pairing and colour system built around a single lightning motif.</p>
+          </div>
+        </div>
+
+        <div class="card ratio-square">
+          <div class="card-frame checker">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB9AAAAfQCAIAAAAVWlMuAAAAtGVYSWZJSSoACAAAAAYAEgEDAAEAAAABAAAAGgEFAAEAAABWAAAAGwEFAAEAAABeAAAAKAEDAAEAAAACAAAAEwIDAAEAAAABAAAAaYc[...]" alt="project image">
+          </div>
+          <div class="layer-row"><span class="eye">&#128065;</span><span class="fname">project2.png</span><span class="blend">Normal · 100%</span></div>
+          <div class="card-body">
+            <span class="card-tag">Branding</span>
+            <h3>Project 2</h3>
+            <p>Concept work and visuals for client-facing collateral.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="section-label">// Services</p>
+        <h2 class="section-title">What I do</h2>
+      </div>
+      <p class="section-desc">Design services focused on brand and social graphics.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service">
+        <span class="idx">01</span>
+        <h3>Brand identities</h3>
+        <p>Complete visual systems including logotypes and colour palettes.</p>
+      </div>
+      <div class="service">
+        <span class="idx">02</span>
+        <h3>Posters &amp; print</h3>
+        <p>Event and product poster designs ready for print or digital use.</p>
+      </div>
+      <div class="service">
+        <span class="idx">03</span>
+        <h3>YouTube thumbnails</h3>
+        <p>Eye-catching thumbnails designed to increase click-through rates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap">
+    <h2>Let's work together</h2>
+    <div class="contact-email mono">seif9ramadan@gmail.com</div>
+    <a class="btn" href="mailto:seif9ramadan@gmail.com">Email me</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© Seif Ramadan</div>
+    <div class="mono">Built with HTML &amp; CSS</div>
+  </div>
+</footer>
+
+</body>
+</html>
